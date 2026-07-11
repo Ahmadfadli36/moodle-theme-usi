@@ -1,0 +1,573 @@
+// =====================================================
+// theme_usi - Post SCSS
+// Custom SCSS - Login Page LMS Hybrid (Boost theme)
+// =====================================================
+// File ini di-compile SETELAH preset default Boost.
+// Isi di bawah dipindah apa adanya dari field "Raw SCSS"
+// yang sebelumnya kamu pakai di Appearance > Themes > Boost.
+
+// ------------------------------
+// Background
+// ------------------------------
+
+#page-login-index {
+    background-color: #f3f4f6;
+
+    #region-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+    }
+}
+
+// ------------------------------
+// Wrapper
+// ------------------------------
+
+.login-wrapper,
+.login-container {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+// ------------------------------
+// Login Card
+// ------------------------------
+
+.loginform {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.08);
+    padding: 1.8rem;
+    max-width: 400px;
+    width: 100%;
+    background: #fff;
+
+    animation: loginCardIn .5s ease forwards;
+}
+
+.login-heading {
+    display: none;
+}
+
+@keyframes loginCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ------------------------------
+// Custom Heading
+// ------------------------------
+
+.login-heading-usi {
+
+    text-align: center;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: headingFadeIn .5s ease forwards;
+
+    p{
+        margin:0;
+        line-height:1.35;
+    }
+
+    .line1{
+        font-size:15px;
+        font-weight:600;
+        letter-spacing:.6px;
+        color:#6b7280;
+    }
+
+    .line2{
+        font-size:21px;
+        font-weight:700;
+        color:#d85a30;
+        margin-top:2px;
+    }
+
+    .line3{
+
+        font-size:20px;
+        font-weight:700;
+        margin-top:8px;
+        margin-bottom:22px;
+
+        .highlight{
+
+            position:relative;
+            display:inline-block;
+            padding:4px 14px;
+
+            color:#2563eb;
+
+            z-index:1;
+
+            &::before{
+
+                content:"";
+                position:absolute;
+                left:0;
+                top:8%;
+                width:0;
+                height:84%;
+
+                background:linear-gradient(
+                    90deg,
+                    #e0f2fe 0%,
+                    #bfdbfe 40%,
+                    #93c5fd 70%,
+                    #60a5fa 100%
+                );
+
+                border-radius:8px;
+
+                z-index:-1;
+
+                animation:highlightSweep .75s ease-out forwards;
+                animation-delay:.7s;
+            }
+        }
+    }
+
+}
+
+@keyframes headingFadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes highlightSweep{
+
+    0%{
+        width:0;
+        opacity:.4;
+    }
+
+    70%{
+        width:105%;
+        opacity:1;
+    }
+
+    100%{
+        width:100%;
+        opacity:1;
+    }
+
+}
+
+// ------------------------------
+// Logo
+// ------------------------------
+
+.login-logo-usi{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+
+    opacity:0;
+    transform:scale(.85);
+
+    animation:logoIn .6s cubic-bezier(.34,1.56,.64,1) .95s forwards;
+
+    .placeholder-icon{
+
+        width:44px;
+        height:44px;
+        object-fit:contain;
+        flex-shrink:0;
+
+    }
+
+    span{
+
+        text-align:left;
+        line-height:1.2;
+
+        font-size:16px;
+        font-weight:700;
+
+        color:#412402;
+
+    }
+
+}
+
+@keyframes logoIn{
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+// ------------------------------
+// Error
+// ------------------------------
+
+.loginform .loginerrors,
+.loginform .alert-danger{
+
+    background:#fcebeb;
+    border:1px solid #f09595;
+
+    color:#791f1f;
+
+    border-radius:8px;
+
+    padding:10px 14px;
+
+    animation:errorShake .4s ease-out;
+
+}
+
+@keyframes errorShake{
+
+    0%{transform:translateX(0);}
+    20%{transform:translateX(-6px);}
+    40%{transform:translateX(6px);}
+    60%{transform:translateX(-4px);}
+    80%{transform:translateX(4px);}
+    100%{transform:translateX(0);}
+
+}
+
+// ------------------------------
+// Input
+// ------------------------------
+
+.login-form input[type=text],
+.login-form input[type=password]{
+
+    border-radius:8px;
+    border:1px solid #d1d5db;
+
+    padding:10px 12px;
+
+    transition:.2s;
+
+    &:focus{
+
+        border-color:#2563eb;
+
+        box-shadow:0 0 0 4px rgba(37,99,235,.18);
+
+        outline:none;
+
+    }
+
+}
+
+// ------------------------------
+// Login Button
+// ------------------------------
+
+.login-form #loginbtn{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    padding:11px;
+
+    transition:.25s;
+
+    &:hover{
+
+        background:#1d4ed8;
+
+        transform:translateY(-1px);
+
+        box-shadow:0 8px 18px rgba(37,99,235,.25);
+
+    }
+
+    &:active{
+
+        transform:scale(.98);
+
+    }
+
+}
+
+// ------------------------------
+// Lost Password
+// ------------------------------
+
+.login-form .forgetpass a{
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    &:hover{
+
+        text-decoration:underline;
+
+    }
+
+}
+
+// =====================================================
+// Login Page - Cleanup & Alignment Fixes
+// =====================================================
+
+/* Hilangkan tombol Cookies notice di halaman login */
+.pagelayout-login button[data-modal="alert"][data-modal-title-str*="cookiesenabled"] {
+    display: none !important;
+}
+
+/* Pusatkan bahasa + hilangkan cookies notice */
+.pagelayout-login .d-flex {
+    justify-content: center !important;   /* ini yang paling penting */
+    width: 100% !important;
+}
+
+/* Sembunyikan menu Home di navbar */
+.navbar li[data-key="home"] {
+    display: none !important;
+}
+
+/* Hide "Is this your first time here?" on login page */
+.login-instructions .login-heading {
+    display: none !important;
+}
+
+#page-login-index {
+    .login-container {
+        .divider.border-start {
+            display: none !important;
+        }
+    }
+    .login-languagemenu {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+}
+
+/* Ubah warna saat hover */
+.navbar-nav .nav-link:hover {
+    color: #ff7740 !important; /* sedikit lebih terang agar mudah terlihat */
+}
+
+/* Pusatkan tombol "Masuk" */
+.login-form .login-form-submit,
+.login-form .login-form-submit.mb-3 {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* Buat tombol tidak ikut margin aneh */
+.login-form .btn.btn-primary {
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+/* Pusatkan "Lupa kata sandi?" */
+.login-form-forgotpassword,
+.login-form .login-form-forgotpassword.mb-3 {
+    text-align: center !important;
+}
+
+.pagelayout-login .login-languagemenu {
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+/* Pusatkan dropdown juga */
+.pagelayout-login .dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+/* Hilangkan footer (You are not logged in, data retention, get the app)
+   khusus di HALAMAN LOGIN dan khusus MOBILE */
+@media (max-width: 768px) {
+    .pagelayout-login #page-footer {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+/* --- Override pusatkan tombol OAuth2 (AlmondB, Moodle 5) --- */
+
+/* Pastikan wrapper identity providers menjadi area blok yang terpusat */
+#page-login-index .login-identityproviders,
+#page-login-index .potentialidplist,
+#page-login-index .identityproviders {
+    display: flex !important;
+    flex-direction: column !important; /* vertical stack */
+    align-items: center !important;    /* center horizontal */
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Pastikan setiap provider menjadi inline-block yang terpusat */
+#page-login-index .potentialidplist .potentialidp,
+#page-login-index .potentialidp {
+    display: inline-block !important;
+    float: none !important;
+    margin: 0.5rem auto !important;
+    width: auto !important;            /* jangan paksa 100% */
+    max-width: 320px !important;       /* batasi agar tidak melebar */
+    box-sizing: border-box !important;
+}
+
+/* Tombol itu sendiri: hilangkan float/offset dan center */
+#page-login-index .potentialidp .btn,
+#page-login-index .potentialidp .btn-oauth2,
+#page-login-index .potentialidp button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    float: none !important;
+    width: auto !important;
+    min-width: 160px !important;       /* ukuran minimum agar rapi */
+    box-sizing: border-box !important;
+}
+
+/* Aksesibilitas: jika ada ikon + teks di dalam tombol, pastikan center */
+#page-login-index .potentialidp .btn .oauth2icon,
+#page-login-index .potentialidp .btn .icon {
+    margin-right: 0.5rem !important;
+    vertical-align: middle !important;
+}
+
+/* Backup: jika ada row/column wrapper bawaan yang memaksa justify-start */
+#page-login-index .potentialidplist .row,
+#page-login-index .potentialidplist .columns,
+#page-login-index .potentialidplist .col {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+/* Hapus margin/padding kiri kanan yang bisa meng-offset posisi */
+#page-login-index .card,
+#page-login-index .card .card-body {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+}
+
+/* Pastikan tidak ada transform/translate yang meng-offset posisi */
+#page-login-index .potentialidplist,
+#page-login-index .potentialidp {
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+/* --- STYLE TEKS "Masuk menggunakan akun Anda pada:" --- */
+
+/* Tampilkan lagi + kecilkan + hilangkan bold */
+#page-login-index .login-identityproviders .login-heading,
+#page-login-index .identityproviders .lead {
+    display: block !important;
+    font-size: 0.85rem !important;   /* perkecil teks */
+    font-weight: normal !important;  /* hilangkan bold */
+    opacity: 0.75 !important;        /* lebih halus */
+    margin-bottom: 0.75rem !important;
+    text-align: center !important;
+    color: #555 !important;          /* warna abu-abu lembut */
+}
+
+/* Pusatkan wrapper language menu */
+#page-login-index .langmenu,
+#page-login-index .langmenu .dropdown,
+#page-login-index .langmenu .dropdown-toggle {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+/* Login button */
+#loginbtn,
+.btn.btn-primary.btn-lg {
+    color: #ffffff !important;             /* warna teks putih */
+    background-color: #1B4EF5 !important;  /* biru utama */
+    border-color: #1B4EF5 !important;
+}
+
+// =====================================================
+// Global - Background & Card Styling (di luar login page)
+// =====================================================
+
+body {
+    background-color: #f4f6f8;
+}
+
+#page-wrapper {
+    background-color: #f4f6f8;
+}
+
+.card,
+.block,
+.dashboard-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+// =====================================================
+// Course Category - Hover & Active
+// =====================================================
+
+/* Hover */
+.list-group-item:hover,
+li.listitem:hover {
+    background-color: #fff3e6 !important; /* orange soft */
+    color: #ff6b00;
+}
+
+/* Selected / active category */
+.list-group-item.active,
+.list-group-item[aria-selected="true"],
+li.listitem.active {
+    background-color: #ffe0c2 !important;
+    color: #ff6b00;
+    border-left: 4px solid #ff6b00;
+}

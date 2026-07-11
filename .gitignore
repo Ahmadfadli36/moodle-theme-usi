@@ -1,0 +1,13 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+
+# Node (kalau nanti pakai grunt buat compile AMD)
+node_modules/
+
+# Moodle-generated (jangan commit cache lokal kalau ada)
+*.log
