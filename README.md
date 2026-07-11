@@ -54,7 +54,7 @@ theme_usi/
 Karena sekarang ini plugin, tinggal:
 ```bash
 # zip foldernya, atau kalau sudah di git:
-git clone <repo-theme-usi> theme/usi
+git clone <repo-moodle-theme-usi> theme/usi
 ```
 lalu ulangi langkah 3–6 di atas di tiap server. Nggak perlu copy-paste
 SCSS/HTML manual lagi lewat UI.
@@ -87,13 +87,13 @@ upload hasil `amd/build/` yang sudah di-compile — jangan grunt langsung di ser
 ## Setup Git (sekali di awal)
 
 1. **Bikin repo baru di GitHub** (kosong, jangan centang "Add README"):
-   `https://github.com/new` → nama repo misal `theme-usi` → visibility
+   `https://github.com/new` → nama repo misal `moodle-theme-usi` → visibility
    **Private** disarankan (isinya konfigurasi internal kampus).
 
 2. **Push folder ini ke repo tersebut** dari komputer kamu (bukan dari server):
    ```bash
    cd theme_usi
-   git remote add origin git@github.com:Ahmadfadli36/theme-usi.git
+   git remote add origin git@github.com:Ahmadfadli36/moodle-theme-usi.git
    git branch -M main
    git add .
    git commit -m "Initial commit: theme_usi child theme"
@@ -128,7 +128,7 @@ upload hasil `amd/build/` yang sudah di-compile — jangan grunt langsung di ser
    ```bash
    cd /var/www/lms2.sains.ac.id/theme
    mv usi usi.bak   # backup dulu kalau sudah pernah ada
-   git clone github-theme-usi:Ahmadfadli36/theme-usi.git usi
+   git clone github-theme-usi:Ahmadfadli36/moodle-theme-usi.git usi
    chown -R www-data:www-data usi
    ```
    Ulangi di `new-lms-usi` dan `sip-usi` (path `theme/` beda sesuai domain
