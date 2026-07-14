@@ -17,7 +17,8 @@
  * Custom login page heading/logo injection for theme_usi.
  * Ini versi AMD dari script yang sebelumnya ditaruh di "Additional HTML".
  * Bedanya: sekarang cuma di-load di halaman login (lihat layout/login.php),
- * jadi tidak jalan global di semua halaman lagi.
+ * dan teksnya bisa diatur dari Site administration > Appearance > Themes >
+ * USI (gear icon), bukan hardcode di sini.
  *
  * @module    theme_usi/login
  * @copyright 2026 Universitas Sains Indonesia
@@ -27,10 +28,28 @@
 define([], function() {
 
     /**
+     * Escape teks sebelum dipasang lewat innerHTML, biar aman dari HTML injection
+     * kalau ada karakter aneh di setting admin.
+     *
+     * @param {String} text
+     * @return {String}
+     */
+    var escapeHtml = function(text) {
+        var div = document.createElement('div');
+        div.textContent = text == null ? '' : text;
+        return div.innerHTML;
+    };
+
+    /**
      * Bangun markup heading custom USI dan pasang di atas form login,
      * menggantikan logo bawaan Moodle (#loginlogo) kalau ada.
+     *
+     * @param {Object} config
+     * @param {String} config.line1
+     * @param {String} config.line2
+     * @param {String} config.line3
      */
-    var injectHeading = function() {
+    var injectHeading = function(config) {
         var loginform = document.querySelector('.loginform');
         if (!loginform) {
             return;
@@ -48,9 +67,9 @@ define([], function() {
         var customHeading = document.createElement('div');
         customHeading.className = 'login-heading-usi';
         customHeading.innerHTML =
-            '<p class="line1">SELAMAT DATANG DI</p>' +
-            '<p class="line2">LEARNING MANAGEMENT SYSTEM</p>' +
-            '<p class="line3"><span class="highlight">MATA KULIAH HYBRID</span></p>' +
+            '<p class="line1">' + escapeHtml(config.line1) + '</p>' +
+            '<p class="line2">' + escapeHtml(config.line2) + '</p>' +
+            '<p class="line3"><span class="highlight">' + escapeHtml(config.line3) + '</span></p>' +
             '<div class="login-logo-usi">' +
                 (logoSrc ? '<img class="placeholder-icon" src="' + logoSrc + '" alt="Logo USI">' : '') +
                 '<span>UNIVERSITAS<br>SAINS INDONESIA</span>' +
@@ -66,9 +85,21 @@ define([], function() {
     return {
         /**
          * Entry point, dipanggil dari layout/login.php lewat $PAGE->requires->js_call_amd().
+         *
+         * @param {Boolean} showHeading dari setting "showloginheading" (checkbox)
+         * @param {String} line1 dari setting "loginheadingline1"
+         * @param {String} line2 dari setting "loginheadingline2"
+         * @param {String} line3 dari setting "loginheadingline3"
          */
-        init: function() {
-            injectHeading();
+        init: function(showHeading, line1, line2, line3) {
+            if (!showHeading) {
+                return;
+            }
+            injectHeading({
+                line1: line1,
+                line2: line2,
+                line3: line3
+            });
         }
     };
 });

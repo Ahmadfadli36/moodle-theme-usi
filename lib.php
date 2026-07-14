@@ -71,6 +71,12 @@ function theme_usi_get_pre_scss($theme) {
         $scss .= file_get_contents($prefile);
     }
 
+    // Tambahan dari Site administration > Appearance > Themes > USI (gear icon)
+    // tab Advanced > "Raw initial SCSS". Berguna buat quick-fix tanpa git push/pull.
+    if (!empty($theme->settings->scsspre)) {
+        $scss .= "\n" . $theme->settings->scsspre;
+    }
+
     return $scss;
 }
 
@@ -88,6 +94,12 @@ function theme_usi_get_extra_scss($theme) {
     $postfile = $CFG->dirroot . '/theme/usi/scss/post.scss';
     if (file_exists($postfile)) {
         $scss .= file_get_contents($postfile);
+    }
+
+    // Tambahan dari Site administration > Appearance > Themes > USI (gear icon)
+    // tab Advanced > "Raw SCSS". Berguna buat quick-fix tanpa git push/pull.
+    if (!empty($theme->settings->scss)) {
+        $scss .= "\n" . $theme->settings->scss;
     }
 
     return $scss;

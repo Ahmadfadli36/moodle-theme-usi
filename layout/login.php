@@ -27,7 +27,19 @@
 defined('MOODLE_INTERNAL') || die();
 
 // Panggil JS custom kita, scoped ke halaman login saja (bukan global lagi).
-$PAGE->requires->js_call_amd('theme_usi/login', 'init');
+// Nilai-nilai ini diambil dari Site administration > Appearance > Themes >
+// USI (gear icon) > tab General, bukan hardcode.
+$showloginheading = !empty($PAGE->theme->settings->showloginheading);
+$loginheadingline1 = $PAGE->theme->settings->loginheadingline1 ?? '';
+$loginheadingline2 = $PAGE->theme->settings->loginheadingline2 ?? '';
+$loginheadingline3 = $PAGE->theme->settings->loginheadingline3 ?? '';
+
+$PAGE->requires->js_call_amd('theme_usi/login', 'init', [
+    $showloginheading,
+    $loginheadingline1,
+    $loginheadingline2,
+    $loginheadingline3,
+]);
 
 $bodyattributes = $OUTPUT->body_attributes();
 
